@@ -1,1 +1,70 @@
+name: Generate Keystore and Upload Artifact
 
+on:
+  workflow_dispatch:
+    inputs:
+      output_path:
+        description: "输出 keystore 文件路径"
+        required: true
+        default: "output/mykeystore.jks"
+      validity:
+        description: "证书有效期（天数）"
+        required: true
+        default: "365"
+      common_name:
+        description: "通用名称 (CN)"
+        required: true
+        default: "example.com"
+      organization:
+        description: "组织名称 (O)"
+        required: true
+        default: "My Company"
+      locality:
+        description: "城市或地区名称 (L)"
+        required: true
+        default: "Beijing"
+      state:
+        description: "州或省份名称 (ST)"
+        required: true
+        default: "Beijing"
+      country:
+        description: "国家代码 (C)"
+        required: true
+        default: "CN"
+
+jobs:
+  generate-keystore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'  # 指定 JDK 版本，例如 17、11 等
+          distribution: 'adopt'  # 使用 AdoptOpenJDK
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install --upgrade pip
+
+      - name: Run Python Script
+        run: |
+          python create.py \
+            --validity ${{ github.event.inputs.validity }} \
+            --common-name ${{ github.event.inputs.common_name }} \
+            --organization ${{ github.event.inputs.organization }} \
+            --locality ${{ github.event.inputs.locality }} \
+            --state ${{ github.event.inputs.state }} \
+            --country ${{ github.event.inputs.country }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: keystore-artifact
+          path: output/*
