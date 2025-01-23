@@ -47,10 +47,9 @@ def save_credentials(output_dir, keystore_path, password, alias):
     
     credentials_file = os.path.join(output_dir, "credentials.txt")
     with open(credentials_file, "w") as f:
-        f.write(f"Keystore Path: {keystore_path}\n")
         f.write(f"Password: {password}\n")
         f.write(f"Alias: {alias}\n")
-    print(f"凭证已保存到: {credentials_file}")
+    
 
 def main():
     parser = argparse.ArgumentParser(description="生成keystore文件")
@@ -90,7 +89,6 @@ def main():
     # 保存凭证到指定目录
     save_credentials(
         output_dir=output_dir
-        keystore_path=args.output,
         password=password,
         alias=alias,
     )
