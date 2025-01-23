@@ -52,7 +52,6 @@ jobs:
       - name: Run Python Script
         run: |
           python create.py \
-            -o output/mykeystore.jks \
             -v ${{ github.event.inputs.validity }} \
             -cn ${{ github.event.inputs.common_name }} \
             -org ${{ github.event.inputs.organization }} \
