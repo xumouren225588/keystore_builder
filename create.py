@@ -25,7 +25,7 @@ def generate_keystore(password, alias, validity, dname):
         command = [
             "keytool",
             "-genkey",
-            "-keystore", 'output',
+            "-keystore", 'output/keystore.jks',
             "-storepass", password,
             "-keypass", password,
             "-alias", alias,
