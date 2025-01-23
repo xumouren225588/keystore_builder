@@ -35,7 +35,7 @@ def generate_keystore(password, alias, validity, dname):
             "-validity", str(validity),
         ]
         subprocess.run(command, check=True)
-        print(f"Keystore文件已生成: {keystore_path}")
+        
     except subprocess.CalledProcessError as e:
         print(f"生成keystore失败: {e}")
         exit(1)
@@ -89,7 +89,7 @@ def main():
 
     # 保存凭证到指定目录
     save_credentials(
-        output_dir=output_dir,
+        output_dir=output_dir
         keystore_path=args.output,
         password=password,
         alias=alias,
