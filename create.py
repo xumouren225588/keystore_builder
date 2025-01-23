@@ -80,7 +80,7 @@ def main():
     )
 
     # 生成keystore
-    generate_keystore()
+    generate_keystore(
         password=password,
         alias=alias,
         validity=args.validity,
