@@ -88,7 +88,7 @@ def main():
 
     # 保存凭证到指定目录
     save_credentials(
-        output_dir=output_dir
+        output_dir=output_dir,
         password=password,
         alias=alias,
     )
