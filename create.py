@@ -68,8 +68,14 @@ def main():
     password = generate_random_string(16)
     alias = generate_random_string(16)
 
-    # 构造-dname参数
-    dname = f"CN={args.common_name},O={args.organization},L={args.locality},ST={args.state},C={args.country}"
+    # 构造dname参数
+    dname = (
+        f"CN={args.common_name},"
+        f"O={args.organization},"
+        f"L={args.locality},"
+        f"ST={args.state},"
+        f"C={args.country}"
+    )
 
     # 生成keystore
     generate_keystore(
