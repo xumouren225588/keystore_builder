@@ -3,10 +3,6 @@ name: Generate Keystore and Upload Artifact
 on:
   workflow_dispatch:
     inputs:
-      output_path:
-        description: "输出 keystore 文件路径"
-        required: true
-        default: "output/mykeystore.jks"
       validity:
         description: "证书有效期（天数）"
         required: true
@@ -56,7 +52,7 @@ jobs:
       - name: Run Python Script
         run: |
           python create.py \
-            --output ${{ github.event.inputs.output_path }} \
+            --output output/mykeystore.jks \
             --validity ${{ github.event.inputs.validity }} \
             --common-name ${{ github.event.inputs.common_name }} \
             --organization ${{ github.event.inputs.organization }} \
