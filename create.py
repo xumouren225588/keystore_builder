@@ -16,14 +16,16 @@ def generate_random_string(length=16):
         print(f"生成随机字符串失败: {e}")
         exit(1)
 
-def generate_keystore(keystore_path, password, alias, validity, dname):
+def generate_keystore(password, alias, validity, dname):
     """使用keytool生成keystore文件"""
+    import os
+    os.mkdir('output')
     try:
         # 构造keytool命令
         command = [
             "keytool",
             "-genkey",
-            "-keystore", keystore_path,
+            "-keystore", 'output',
             "-storepass", password,
             "-keypass", password,
             "-alias", alias,
@@ -52,7 +54,7 @@ def save_credentials(output_dir, keystore_path, password, alias):
 
 def main():
     parser = argparse.ArgumentParser(description="生成keystore文件")
-    parser.add_argument("-o", "--output", required=True, help="输出keystore文件路径")
+    
     parser.add_argument("-v", "--validity", type=int, required=True, help="证书有效期（天数）")
     parser.add_argument("-cn", "--common-name", required=True, help="通用名称 (CN)")
     parser.add_argument("-org", "--organization", required=True, help="组织名称 (O)")
@@ -78,8 +80,7 @@ def main():
     )
 
     # 生成keystore
-    generate_keystore(
-        keystore_path=args.output,
+    generate_keystore()
         password=password,
         alias=alias,
         validity=args.validity,
