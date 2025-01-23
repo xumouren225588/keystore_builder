@@ -42,8 +42,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # 指定 JDK 版本，例如 17、11 等
-          distribution: 'adopt'  # 使用 AdoptOpenJDK
+          java-version: '17'
+          distribution: 'adopt'
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -56,6 +56,7 @@ jobs:
       - name: Run Python Script
         run: |
           python create.py \
+            --output ${{ github.event.inputs.output_path }} \
             --validity ${{ github.event.inputs.validity }} \
             --common-name ${{ github.event.inputs.common_name }} \
             --organization ${{ github.event.inputs.organization }} \
