@@ -40,7 +40,7 @@ def generate_keystore(password, alias, validity, dname):
         print(f"生成keystore失败: {e}")
         exit(1)
 
-def save_credentials(output_dir, keystore_path, password, alias):
+def save_credentials(output_dir, password, alias):
     """将keystore路径、密码和别名保存到文本文档"""
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
