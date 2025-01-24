@@ -52,12 +52,12 @@ jobs:
       - name: Run Python Script
         run: |
           python create.py \
-            -v ${{ github.event.inputs.validity }} \
-            -cn ${{ github.event.inputs.common_name }} \
-            -org ${{ github.event.inputs.organization }} \
-            -l ${{ github.event.inputs.locality }} \
-            -st ${{ github.event.inputs.state }} \
-            -c ${{ github.event.inputs.country }}
+            -v '${{ github.event.inputs.validity }}' \
+            -cn '${{ github.event.inputs.common_name }}' \
+            -org '${{ github.event.inputs.organization }}' \
+            -l '${{ github.event.inputs.locality }}' \
+            -st '${{ github.event.inputs.state }}' \
+            -c '${{ github.event.inputs.country }}'
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
