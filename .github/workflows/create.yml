@@ -64,3 +64,4 @@ jobs:
         with:
           name: keystore-artifact
           path: output/*
+          retention-days: 1
