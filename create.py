@@ -47,8 +47,9 @@ def save_credentials(output_dir, password, alias):
     
     credentials_file = os.path.join(output_dir, "credentials.txt")
     with open(credentials_file, "w") as f:
-        f.write(f"Password: {password}\n")
-        f.write(f"Alias: {alias}\n")
+        f.write(f"密码：{password}\n")
+        f.write(f"别名：{alias}\n")
+        f.write('请妥善保管好以上信息，不要泄露。')
     
 
 def main():
